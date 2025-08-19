@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de Design Gráfico</title>
+    <style>
+        /* Reset & Base Styles */
+        :root {
+            --dark-bg: #1a1a1a;
+            --darker-bg: #121212;
+            --primary: #ffffff;
+            --secondary: #e9e9e9;
+            --accent: #4a9ff5;
+            --spacing-unit: 20px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(8px);
+            padding: var(--spacing-unit);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-unit);
+        }
+        
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--spacing-unit);
+            padding-top: 80px;
+            background: linear-gradient(rgba(26, 26, 26, 0.7), var(--dark-bg)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4452ee02-ed56-4e77-ba3f-de738a7dee86.png') no-repeat center/cover;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: calc(var(--spacing-unit) / 2);
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: var(--spacing-unit);
+            color: var(--secondary);
+        }
+        
+        .btn {
+            background-color: var(--accent);
+            color: var(--dark-bg);
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease, transform 0.2s ease;
+            border: 2px solid var(--accent);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        #about {
+            padding: calc(var(--spacing-unit) * 3) var(--spacing-unit);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        .about-header h2 {
+            margin-top: 2cm;
+            font-size: 2rem;
+            margin-bottom: var(--spacing-unit);
+        }
+        
+        .divider {
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 100px;
+        }
+        
+        @media (min-width: 768px) {
+            .about-content {
+                flex-direction: row;
+            }
+        }
+        
+        .profile-image {
+            --avatar-size: clamp(180px, 52vw, 300px);
+            width: var(--avatar-size);
+            height: var(--avatar-size);
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            flex: 0 0 auto;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .profile-info {
+            flex: 2;
+        }
+        
+        .profile-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-unit);
+        }
+        
+        .profile-info p {
+            margin-bottom: var(--spacing-unit);
+            color: var(--secondary);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--spacing-unit) / 2);
+            justify-content: center;
+
+        }
+        
+        .skill {
+            background-color: var(--darker-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Portfolio Sections */
+        .section {
+            padding: calc(var(--spacing-unit) * 3) var(--spacing-unit);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 70%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-unit);
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 16/9;
+            transition: transform 0.4s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            object-position: 50% 20%;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: var(--spacing-unit);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            margin-bottom: calc(var(--spacing-unit) / 2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: calc(var(--spacing-unit) * 2);
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+        }
+        
+        .social-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .skill-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #4a9ff5;
+            color: rgb(34, 34, 34);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 1cm;
+        }
+
+        .skill-btn:hover {
+            background-color: #dbdbdb;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Lightbox fade */
+        .lightbox {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: calc(var(--spacing-unit) / 2);
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">PORTFOLIO</div>
+            <div class="nav-links">
+                <a href="#logos">Logos</a>
+                <a href="#artes">Banners</a>
+                <a href="#thumbnails">Thumbnails</a>
+                <a href="#redes-sociais">Posts</a>
+                <a href="#cartoons">Cartoons</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <div class="about-header">
+            <h2>About me</h2>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="about-content">
+            <div class="profile-image">
+                <img src="minhafoto_perfil.png" alt="Retrato profissional do designer gráfico com fundo escuro e iluminação suave">
+            </div>
+            
+            <div class="profile-info">
+                <h3>Graphic Designer and Video Editor</h3>
+                <p>Hi, my name is Carlos Eduardo Macário Cassoli. I’m 23 years old and I’m a graphic designer and video editor. Since I was 14, I’ve been editing videos and creating visuals for my gaming channel on YouTube</p>
+                <p>That’s when I discovered my passion for the creative world. Ever since, I’ve been diving deeper into design and content creation, constantly improving my skills in both design and video editing.</p>
+                
+                <div class="skills">
+                    <span class="skill">Adobe Photoshop</span>
+                    <span class="skill">Figma</span>
+                    <span class="skill">Canva</span>                    
+                    <span class="skill">Adobe After Effects</span>
+                    <span class="skill">Sony Vegas</span>
+                    <span class="skill">CapCut</span>
+                </div>
+
+                <div class="skills">
+
+                    <a href="https://caducaducadu.github.io/resume" class="skill-btn">
+                        Click here to see my resume
+                    </a>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Sections -->
+    <section class="section fade-in" id="logos">
+        <h2 class="section-title">Logos</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="Logos/logo_kfit.png">
+                <div class="portfolio-overlay">
+                    <h3>K-Fits</h3>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <img src="Logos/logo_pixaly2.png">
+                <div class="portfolio-overlay">
+                    <h3>Pixaly</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section fade-in" id="artes">
+        <h2 class="section-title">Banners</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="Artes/juice.png">
+                <div class="portfolio-overlay">
+                    <h3>Juice Wrld</h3>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Artes/messi.png">
+                <div class="portfolio-overlay">
+                    <h3>Lionel Messi</h3>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Artes/mario.png">
+                <div class="portfolio-overlay">
+                    <h3>Mario</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section fade-in" id="thumbnails">
+        <h2 class="section-title">Thumbnails</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="Youtube Thumbnails/thumbnail1.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Youtube Thumbnails/thumbnail2.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Youtube Thumbnails/thumbnail3.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Youtube Thumbnails/thumbnail4.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Youtube Thumbnails/thumbnail5.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Youtube Thumbnails/thumbnail6.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section fade-in" id="redes-sociais">
+        <h2 class="section-title">Posts</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="Posts Para Redes Sociais/post1.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Posts Para Redes Sociais/post2.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Posts Para Redes Sociais/post3.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Posts Para Redes Sociais/post4.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Posts Para Redes Sociais/post5.png">
+                <div class="portfolio-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section fade-in" id="cartoons">
+        <h2 class="section-title">Cartoons</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="Cartoon 2D/cartoon.png">
+                <div class="portfolio-overlay">
+                    <h3>Cartoon para capa de música</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   <footer id="contato" class="fade-in">
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/carlos-eduardo-mac%C3%A1rio-cassoli-396770376/" target="_blank">
+            <img src="linkedin.png" width="30" height="30" alt="LinkedIn">
+        </a>
+        <a href="https://wa.me/5527997250999" target="_blank">
+            <img src="whatsapp.png" width="30" height="30" alt="WhatsApp">
+        </a>
+    </div>
+    
+    <p class="copyright">cassoli.carloseduardo@gmail.com</p>
+</footer>
+
+    
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Change navbar style on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.backgroundColor = 'rgba(18, 18, 18, 0.98)';
+            } else {
+                nav.style.backgroundColor = 'rgba(26, 26, 26, 0.95)';
+            }
+        });
+        
+        // Fade-in animation on scroll
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+        
+        // Simple lightbox for portfolio items
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const title = this.querySelector('h3')?.textContent || 'Projeto';
+                const description = this.querySelector('p')?.textContent || '';
+                
+                // Create lightbox
+                const lightbox = document.createElement('div');
+                lightbox.classList.add("lightbox");
+                lightbox.style.position = 'fixed';
+                lightbox.style.top = '0';
+                lightbox.style.left = '0';
+                lightbox.style.width = '100%';
+                lightbox.style.height = '100%';
+                lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                lightbox.style.display = 'flex';
+                lightbox.style.flexDirection = 'column';
+                lightbox.style.justifyContent = 'center';
+                lightbox.style.alignItems = 'center';
+                lightbox.style.zIndex = '1000';
+                lightbox.style.padding = '20px';
+                
+                // Create content
+                const content = document.createElement('div');
+                content.style.maxWidth = '90%';
+                content.style.maxHeight = '90%';
+                
+                const imgElement = document.createElement('img');
+                imgElement.src = img.src;
+                imgElement.style.maxHeight = '80vh';
+                imgElement.style.maxWidth = '100%';
+                imgElement.style.objectFit = 'contain';
+                
+                const titleElement = document.createElement('h2');
+                titleElement.textContent = title;
+                titleElement.style.color = 'white';
+                titleElement.style.marginTop = '20px';
+                titleElement.style.textAlign = 'center';
+                
+                const descElement = document.createElement('p');
+                descElement.textContent = description;
+                descElement.style.color = '#ccc';
+                descElement.style.marginTop = '10px';
+                descElement.style.textAlign = 'center';
+                
+                content.appendChild(imgElement);
+                content.appendChild(titleElement);
+                content.appendChild(descElement);
+                lightbox.appendChild(content);
+                
+                // Close button
+                const closeButton = document.createElement('button');
+                closeButton.textContent = 'Fechar';
+                closeButton.style.marginTop = '20px';
+                closeButton.style.padding = '10px 20px';
+                closeButton.style.backgroundColor = 'transparent';
+                closeButton.style.color = 'white';
+                closeButton.style.border = '1px solid white';
+                closeButton.style.borderRadius = '4px';
+                closeButton.style.cursor = 'pointer';
+                closeButton.addEventListener('click', () => {
+                    document.body.removeChild(lightbox);
+                });
+                
+                lightbox.appendChild(closeButton);
+                
+                // Close on click outside
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        document.body.removeChild(lightbox);
+                    }
+                });
+                
+                // Add to body
+                document.body.appendChild(lightbox);
+            });
+        });
+    </script>
+</body>
+</html>
